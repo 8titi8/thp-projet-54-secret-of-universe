@@ -13,6 +13,8 @@ end
 group :production do
     gem  'pg'
 end
+# Pour la gestion des passwords cryptés
+gem 'bcrypt'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
