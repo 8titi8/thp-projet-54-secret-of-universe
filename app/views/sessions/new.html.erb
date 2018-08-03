@@ -1,3 +1,7 @@
+<% flash.each do |type, message|  %>
+<div class="alert alert-<%= type %>"><%= message %></div>
+<% end %>
+
 <% provide(:username, "Log in") %>
    	 <h1>Log in</h1>
 

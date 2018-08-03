@@ -15,7 +15,7 @@ module SessionsHelper
     end
   end
  # Méthode qui détermine si un utilisateur est déjà connecté, renvoie true si l’utilisateur est connecté,
- # sera utilisée pour l’affichage de la nav bar
+ # sera utilisée pour l’affichage de la nav bar notamment
   def logged_in?
       !current_user.nil?
   end
