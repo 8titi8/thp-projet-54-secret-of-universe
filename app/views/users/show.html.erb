@@ -1,2 +1,18 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class="container">
+  <h2>Comment ça va aujourd'hui <%= @user.username %> ?</h2>
+
+    <p>Pas trop mal au cerveau avec toutes ces heures passées à travailler devant un écran ?</p>
+    <hr>
+      <span class="image">
+       <img src="https://image.flaticon.com/icons/svg/201/201633.svg" alt="Cerveau en ébullition" style="width: 30%; max-width:%; position: relative; top: 20px; bottom: 150px; left: 35%; right: 50%">
+      </span>
+      <br><br><br>
+      <hr>
+      <h3>Tes infos</h3>
+        <p><strong>Nom</strong> :  <%= @user.username  %>
+          <br>
+          <strong>Email</strong> :  <%= @user.email  %></p>
+          <a href="<%= edit_user_path %>"><input type="button" class="btn btn-primary" value="Modifier mes informations"></a>
+          <hr>
+
+</div>

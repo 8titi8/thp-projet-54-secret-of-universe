@@ -1,1 +1,27 @@
-<!-- pas de page -->
+<div class="container">
+
+   <form action="/users/#{@user.id}" method="PATCH">
+          <div class="container">
+            <h2>Hey <%= @user.username %>! </h2>
+            <h3>Modifie tes informations</h3>
+            <br>
+            <hr>
+             <b>Pour rappel ton email c'est <%= @user.email %>, mais ca tu ne peux pas le modifier ! </b></label><br><br>
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+            <label for="username"><b>Ton petit nom est <%= @user.username %>, pour en changer c'est ici :</b></label><br>
+                <input type="text" placeholder="Ton nouveau nom" name="username" required><br><br>
+
+
+            <label for="psw"><b>Change ou confirme ton mot de passe</b></label><br>
+                <input type="password" placeholder="Entre un nouveau mot de passe" name="password" required><br><br>
+
+            <label for="psw-repeat"><b>Confirme ton nouveau mot de passe</b></label><br>
+                <input type="password" placeholder="Confirme stp" name="password_confirmation" required><br><br>
+            <hr><br>
+            <input type="submit" class="btn btn-primary" value="Go le changement">
+        </div>
+    </form>
+
+
+
+</div>

@@ -4,19 +4,22 @@ class UsersController < ApplicationController
   end
 
   def show
-
-    if current_user.id == params[:id].to_i
-      render 'show'
+    if current_user.nil?
+      render 'access_denied'
+    elsif current_user.id == params[:id].to_i
       @user = User.find(params[:id])
+      render 'show'
     else
       render 'access_denied'
     end
   end
 
   def edit
-    if current_user.id == params[:id].to_i
-      render 'edit'
+    if current_user.nil?
+      render 'access_denied'
+    elsif current_user.id == params[:id].to_i
       @user = User.find(params[:id])
+      render 'edit'
     else
       render 'access_denied'
     end
@@ -25,7 +28,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     @user.update(user_params)
-    redirect_to home_path
+    redirect_to user_path(user.id)
   end
 
   def new
@@ -33,8 +36,14 @@ class UsersController < ApplicationController
   end
 
   def create
-    user = User.create(user_params)
-    redirect_to user_path(user.id)
+    user = User.new(user_params)
+    if user.save
+      log_in(user)
+      flash[:success] = "Bravo, vous êtes bien inscrit.. vous voilà fin prêt à obtenir ce SECRET !"
+      redirect_to user_path(user.id)
+    else
+      render 'new'
+    end
   end
 
   def destroy
@@ -45,7 +54,7 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:username, :password_digest)
+    params.permit(:username, :email, :password)
   end
 
 end
