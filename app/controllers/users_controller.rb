@@ -4,11 +4,22 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id]) 
+
+    if current_user.id == params[:id].to_i
+      render 'show'
+      @user = User.find(params[:id])
+    else
+      render 'access_denied'
+    end
   end
 
   def edit
-    @user = User.find(params[:id])
+    if current_user.id == params[:id].to_i
+      render 'edit'
+      @user = User.find(params[:id])
+    else
+      render 'access_denied'
+    end
   end
 
   def update
@@ -22,12 +33,8 @@ class UsersController < ApplicationController
   end
 
   def create
-    user = User.new(user_params)
-      if user.save
-        log_in(user)
-        redirect_to user_path
-      else render 'new'
-    end
+    user = User.create(user_params)
+    redirect_to user_path(user.id)
   end
 
   def destroy
